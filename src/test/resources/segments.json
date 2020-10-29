@@ -1,0 +1,20 @@
+{
+  "segments" : [
+    {
+      "title" : "Chapter 1, part 1",
+      "offset" : "PT0S"
+    },
+    {
+      "title" : "Chapter 1, part 2",
+      "offset" : "PT3M11S"
+    },
+    {
+      "title" : "Chapter 2",
+      "offset" : "PT15M25S"
+    },
+    {
+      "title" : "Chapter 3",
+      "offset" : "PT28M26.4S"
+    }
+  ]
+}
