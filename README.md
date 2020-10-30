@@ -44,3 +44,65 @@ and similar libraries for other environments.
 In the example, there is silence which starts at 3 minutes and 9 seconds into the file, and
 lasts until 3 minutes and 11 seconds – in other words, two seconds of silence. The silence
 intervals are always given in chronological order.
+
+## Solution
+
+### Requirements
+
+Any unix system and `java` installed.  
+In order to execute tests, `sbt` needs to be installed.
+
+### Run
+
+```shell
+./silence \
+    --input-file <path/to/input/file> \
+    --output-file <path/to/output/file> \
+    --chapter-break <ISO8601 duration> \
+    --chapter-part-break <ISO8601 duration> \
+    --max-chapter-duration <ISO8601 duration>
+```
+
+* `--input-file` The path to an XML file with silence intervals
+* `--output-file` The path to a json file with segments
+* `--chapter-break` The silence duration which reliably indicates a chapter transition
+* `--chapter-part-break` A silence duration which can be used to split a long chapter (always shorter than the silence duration used to split chapters)
+* `--max-chapter-duration` The maximum duration of a segment, after which the chapter will be broken up into multiple segments
+
+### Example
+
+```shell
+./silence \
+    --input-file silences.xml \
+    --output-file segments.json \
+    --chapter-break PT3S \
+    --chapter-part-break PT1S \
+    --max-chapter-duration PT10M
+```
+
+### Output
+
+The example output file with segments (the result from silences in background section).
+
+```json
+{
+  "segments" : [
+    {
+      "title" : "Chapter 1, part 1",
+      "offset" : "PT0S"
+    },
+    {
+      "title" : "Chapter 1, part 2",
+      "offset" : "PT3M11S"
+    },
+    {
+      "title" : "Chapter 2",
+      "offset" : "PT15M25S"
+    },
+    {
+      "title" : "Chapter 3",
+      "offset" : "PT28M26.4S"
+    }
+  ]
+}
+```
