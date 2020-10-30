@@ -1,7 +1,6 @@
 package com.imaxmelnyk.silence
 
-import java.io.{File, FileOutputStream}
-import java.time.Duration
+import java.io.FileOutputStream
 
 import com.imaxmelnyk.silence.models.{Segments, Silence}
 import com.imaxmelnyk.silence.models.Segments.encoder

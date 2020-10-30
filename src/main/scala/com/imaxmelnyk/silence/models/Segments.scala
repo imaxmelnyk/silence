@@ -3,13 +3,14 @@ package com.imaxmelnyk.silence.models
 import java.time.Duration
 
 import com.imaxmelnyk.silence.Config
-import io.circe.Encoder
-import io.circe.generic.semiauto.deriveEncoder
+import io.circe.{Decoder, Encoder}
+import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 
 case class Segments(segments: Seq[Segment])
 
 object Segments {
   implicit val encoder: Encoder[Segments] = deriveEncoder[Segments]
+  implicit val decoder: Decoder[Segments] = deriveDecoder[Segments]
 
   def apply(silences: Seq[Silence])
            (implicit config: Config): Segments = {
